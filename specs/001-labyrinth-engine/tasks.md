@@ -112,7 +112,7 @@
 **Independent Test**: Navigate through each lab catalog module and verify all verifiers pass on correct configuration.
 
 - [x] T023 Implement Lab 01 (Systemd Mastery) in `u_lab/labs/01-systemd/`
-- [ ] T024 [P] Implement Lab 02 (Network Netplan/UFW) in `u_lab/labs/02-network/`
+- [x] T024 [P] Implement Lab 02 (Network Netplan/UFW) in `u_lab/labs/02-network/`
 - [ ] T025 [P] Implement Lab 03 (Permissions/SSH Hardening) in `u_lab/labs/03-security/`
 - [ ] T026 [P] Implement Lab 04 (Storage LVM Partitioning) in `u_lab/labs/04-storage/`
 - [ ] T027 [P] Implement Lab 05 (Apt/Source Compilation) in `u_lab/labs/05-compilation/`
