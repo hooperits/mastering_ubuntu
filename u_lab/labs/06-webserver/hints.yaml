@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "OpenSSL Certificate Command"
+    content: "Generate key and cert using OpenSSL:\n`openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/labyrinth.key -out /etc/ssl/certs/labyrinth.crt`"
+  - tier: 2
+    title: "Nginx Server Blocks Configurations"
+    content: "Write `/etc/nginx/sites-available/reverse-proxy.conf` with a HTTP (80) block redirecting to HTTPS, and an HTTPS (443 ssl) block configured with the SSL certificates, proxying `/` requests to `proxy_pass http://127.0.0.1:8080`. Link it to `/etc/nginx/sites-enabled/` and reload Nginx."
+  - tier: 3
+    title: "Logrotate parameters syntax"
+    content: "Create `/etc/logrotate.d/web-app` containing:\n```text\n/var/log/web-app/*.log {\n    daily\n    rotate 7\n    compress\n    delaycompress\n    missingok\n    notifempty\n    create 0660 www-data www-data\n}\n```"

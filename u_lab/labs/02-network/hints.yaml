@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Netplan Indentation Rules"
+    content: "Netplan configuration files use strict YAML indentation (use spaces, never tabs). Edit `/etc/netplan/50-cloud-init.yaml`. Under `eth0:`, disable dhcp4 (`dhcp4: false`), and define `addresses: [192.168.1.100/24]`, `routes:` (or `gateway4`), and `nameservers: addresses: [8.8.8.8, 8.8.4.4]`."
+  - tier: 2
+    title: "UFW Subnet & Port Commands"
+    content: "1. For restricting SSH (port 22) to subnet `192.168.1.0/24`: `ufw allow from 192.168.1.0/24 to any port 22 proto tcp`.\n2. For permitting HTTP (port 80) from anywhere: `ufw allow 80/tcp`.\n3. For explicitly blocking DB (port 3306): `ufw deny 3306/tcp`."
+  - tier: 3
+    title: "Local Hostname Mapping Syntax"
+    content: "1. Open `/etc/hosts` in the container.\n2. Add mapping lines: `127.0.0.1 labyrinth-db.local` and `127.0.0.1 labyrinth-web.local`.\n3. Save and verify resolution using `getent hosts labyrinth-db.local`."

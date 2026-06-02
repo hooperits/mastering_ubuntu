@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Local Repository Config"
+    content: "1. Create `/etc/apt/sources.list.d/local.list`.\n2. Write: `deb [trusted=yes] file:/var/local/repo ./` (this informs APT that /var/local/repo is a local trusted source)."
+  - tier: 2
+    title: "Compiling Shared C Objects"
+    content: "Navigate to `/root/src/`:\n1. Compile with PIC flags: `gcc -fPIC -shared -o libmastery.so libmastery.c`.\n2. Move the output to library paths: `mv libmastery.so /usr/local/lib/`."
+  - tier: 3
+    title: "Dynamic Linker & App Compilation"
+    content: "1. Register path: Create `/etc/ld.so.conf.d/mastery.conf` containing `/usr/local/lib` and run `ldconfig` to rebuild dynamic loader cache.\n2. Compile main app: `gcc -o my_app main.c -L/usr/local/lib -lmastery`.\n3. Move compiled binary: `mv my_app /usr/local/bin/`."

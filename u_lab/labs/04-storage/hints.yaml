@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "LVM Commands Flow"
+    content: "Write `/root/lvm-setup.sh` containing the exact sequence of commands:\n1. Physical Volume: `pvcreate /dev/sdb`\n2. Volume Group: `vgcreate vg_data /dev/sdb`\n3. Logical Volume: `lvcreate -n lv_storage -l 100%FREE vg_data`\n4. Format: `mkfs.ext4 /dev/vg_data/lv_storage`"
+  - tier: 2
+    title: "Swapfile Allocation & mkswap"
+    content: "1. Create file: `dd if=/dev/zero of=/swapfile bs=1M count=256` (exact 256MB size).\n2. Lockdown permissions: `chmod 600 /swapfile`.\n3. Format as swap space: `mkswap /swapfile`.\n4. Open `/etc/fstab` and append `/swapfile none swap sw 0 0`."
+  - tier: 3
+    title: "fstab Persistent Disk Mount Syntax"
+    content: "Open `/etc/fstab`. Add the mapping line for the mock disk UUID:\n`UUID=fe382b90-1c39-4d82-89b2-38d73b22b100  /mnt/data  ext4  defaults,nofail  0  2`\n*(Ensure the 'nofail' flag is included inside the options column to prevent system boot failures if the drive is missing)*"

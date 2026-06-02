@@ -189,5 +189,61 @@ def destroy_lab(lab_id):
         console.print(f"[red]Error during cleanup: {e}[/red]")
         sys.exit(1)
 
+@cli.command("hint")
+@click.argument("lab_id")
+def hint_lab(lab_id):
+    """Get progressive hints for a lab."""
+    try:
+        loader = Loader()
+        state = StateManager()
+
+        lab_data = loader.load_lab(lab_id)
+        if not lab_data:
+            console.print(f"[red]Error: Lab with ID '{lab_id}' not found.[/red]")
+            sys.exit(1)
+
+        hints = loader.load_hints(lab_id)
+        if not hints:
+            console.print(f"[yellow]No hints configured for lab '{lab_id}'. Please refer to the solution guide at: {lab_data.get('guide_path')}[/yellow]")
+            return
+
+        # Fetch current hint level
+        hint_level = state.get_hint_level(lab_id)
+
+        if hint_level < len(hints):
+            hint = hints[hint_level]
+            tier = hint.get("tier", hint_level + 1)
+            title = hint.get("title", f"Hint Tier {tier}")
+            content = hint.get("content", "")
+
+            console.print(Panel(
+                f"[bold yellow]{title}[/bold yellow] (Tier {tier} of {len(hints)})\n\n"
+                f"{content}",
+                border_style="yellow",
+                title=f"Labyrinth Hint System: {lab_data['metadata'].get('title')}",
+                expand=False
+            ))
+            
+            # Increment and save
+            state.increment_hint_level(lab_id)
+            
+            # Print next instructions
+            if hint_level + 1 < len(hints):
+                console.print(f"[dim]Run 'u-lab hint {lab_id}' again to unlock the next hint (Tier {tier + 1}).[/dim]")
+            else:
+                console.print(f"[dim]All hints unlocked. If you are still stuck, consult the walkthrough guide in the directory: {lab_data.get('guide_path')}[/dim]")
+        else:
+            console.print(Panel(
+                f"[bold yellow]All Hints Unlocked[/bold yellow]\n\n"
+                f"You have already seen all {len(hints)} hints.\n"
+                f"Check the solutions guide here:\n"
+                f"[bold white]{lab_data.get('guide_path')}[/bold white]",
+                border_style="yellow",
+                expand=False
+            ))
+    except Exception as e:
+        console.print(f"[red]Error fetching hint: {e}[/red]")
+        sys.exit(1)
+
 if __name__ == "__main__":
     cli()

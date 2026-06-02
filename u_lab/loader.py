@@ -78,3 +78,22 @@ class Loader:
             "verify_path": verify_script if os.path.exists(verify_script) else None,
             "guide_path": guide_md if os.path.exists(guide_md) else None
         }
+
+    def load_hints(self, lab_id: str) -> Optional[List[Dict[str, Any]]]:
+        """Loads hints from hints.yaml in the lab directory."""
+        lab_data = self.load_lab(lab_id)
+        if not lab_data:
+            return None
+        
+        hints_path = os.path.join(lab_data["directory"], "hints.yaml")
+        if not os.path.exists(hints_path):
+            return None
+            
+        try:
+            with open(hints_path, "r") as f:
+                content = yaml.safe_load(f)
+                if isinstance(content, dict) and "hints" in content:
+                    return content["hints"]
+        except (yaml.YAMLError, OSError):
+            pass
+        return None

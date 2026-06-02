@@ -41,8 +41,13 @@ class StateManager:
                 "status": "Not Started",
                 "started_at": None,
                 "completed_at": None,
-                "attempts": 0
+                "attempts": 0,
+                "hints_used": 0
             }
+        # Ensure older configs that might be missing hints_used are updated
+        if "hints_used" not in self.data["labs"][lab_id]:
+            self.data["labs"][lab_id]["hints_used"] = 0
+            
         return self.data["labs"][lab_id]
 
     def start_lab(self, lab_id: str) -> None:
@@ -65,3 +70,15 @@ class StateManager:
         lab = self.get_lab(lab_id)
         lab["attempts"] += 1
         self.save()
+
+    def get_hint_level(self, lab_id: str) -> int:
+        """Gets the number of hints used for a lab."""
+        lab = self.get_lab(lab_id)
+        return lab.get("hints_used", 0)
+
+    def increment_hint_level(self, lab_id: str) -> int:
+        """Increments the hint level and returns the new value."""
+        lab = self.get_lab(lab_id)
+        lab["hints_used"] += 1
+        self.save()
+        return lab["hints_used"]

@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Understanding Service Locations"
+    content: "Systemd service files created by administrators are located in `/etc/systemd/system/`. You need to edit `/etc/systemd/system/web-app.service` to change the service settings."
+  - tier: 2
+    title: "Systemd User & Restart Directives"
+    content: "Inside the `[Service]` block of the unit file:\n1. Define `User=sysadm` to run the process as the non-root system user.\n2. Add `Restart=always` (or `on-failure`) to make the service self-healing if it crashes."
+  - tier: 3
+    title: "Exact Service Setup Walkthrough"
+    content: "1. Open `/etc/systemd/system/web-app.service` using `nano` or `vim`.\n2. Modify `ExecStart` path to point to `/usr/local/bin/web-app.sh` (which is the actual script path).\n3. Add lines `User=sysadm` and `Restart=always` in the `[Service]` block.\n4. Reload configurations and boot: `systemctl daemon-reload && systemctl restart web-app`."

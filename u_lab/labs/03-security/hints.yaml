@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Access Control Lists (ACL) Setup"
+    content: "Standard permissions block others, but ACLs let you grant access to user 'audit' specifically: Run `setfacl -m u:audit:rx /var/shared`. Run `getfacl /var/shared` to audit the change."
+  - tier: 2
+    title: "visudo & operator Configuration"
+    content: "To grant restricted sudo rights to user 'operator', create a file at `/etc/sudoers.d/operator` using the command `visudo -f /etc/sudoers.d/operator`. Write: `operator ALL=(ALL) NOPASSWD: /usr/bin/systemctl, /usr/sbin/service`."
+  - tier: 3
+    title: "sshd_config Hardening Parameters"
+    content: "Open `/etc/ssh/sshd_config`. Edit the line to say `PasswordAuthentication no`. Verify `PubkeyAuthentication` is set to `yes`. Don't forget to reload the configuration by running `systemctl restart ssh`."

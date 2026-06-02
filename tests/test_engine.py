@@ -93,3 +93,39 @@ def test_engine_docker_status(mock_from_env):
     # Mock ping failed
     mock_client.ping.side_effect = Exception("offline")
     assert engine.is_docker_active() is False
+
+def test_state_manager_hints():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        state_file = os.path.join(tmpdir, "progress.json")
+        sm = StateManager(filepath=state_file)
+        
+        # Default hint level is 0
+        assert sm.get_hint_level("01-systemd") == 0
+        
+        # Increment returns new level 1
+        assert sm.increment_hint_level("01-systemd") == 1
+        assert sm.get_hint_level("01-systemd") == 1
+
+def test_loader_hints():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lab_dir = os.path.join(tmpdir, "lab-01")
+        os.makedirs(lab_dir)
+        
+        # Write config and hints file
+        with open(os.path.join(lab_dir, "lab.yaml"), "w") as f:
+            yaml.dump({"id": "lab-01", "title": "Test Lab"}, f)
+        
+        hints_data = {
+            "hints": [
+                {"tier": 1, "title": "Test Title", "content": "Test Content"}
+            ]
+        }
+        with open(os.path.join(lab_dir, "hints.yaml"), "w") as f:
+            yaml.dump(hints_data, f)
+            
+        loader = Loader(labs_dir=tmpdir)
+        hints = loader.load_hints("lab-01")
+        
+        assert hints is not None
+        assert len(hints) == 1
+        assert hints[0]["title"] == "Test Title"
