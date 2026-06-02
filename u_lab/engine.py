@@ -130,12 +130,20 @@ class EngineManager:
                 # Fallback: create default minimal base dockerfile contents dynamically
                 self._write_default_dockerfile_base(dockerfile_path)
             
-            self.client.images.build(
+            log_generator = self.client.api.build(
                 path=repo_root,
                 dockerfile="Dockerfile.base",
                 tag="u-lab-base:latest",
-                rm=True
+                rm=True,
+                decode=True
             )
+            for chunk in log_generator:
+                if 'stream' in chunk:
+                    text = chunk['stream'].strip()
+                    if text:
+                        console.print(f"[dim]{text}[/dim]")
+                elif 'errorDetail' in chunk:
+                    raise RuntimeError(f"Docker build failed: {chunk['errorDetail']['message']}")
             console.print("[green]Base image u-lab-base:latest built successfully![/green]")
 
     def _write_default_dockerfile_base(self, path: str) -> None:
