@@ -113,7 +113,7 @@ Below is a reference guide for managing Labyrinth lab environments:
 
 | Lab | Title | Focus Area / Key Concepts | Status | Documentation / Learn More |
 |:---:|:---|:---|:---:|:---|
-| **01** | **Systemd Service Mastery** | Fix crashing services, least-privilege users, auto-restart policies | Ready! 🚀 | [Ubuntu Server Docs](https://ubuntu.com/server/docs) |
+| **01** | **Systemd Service Mastery** | Fix crashing services, least-privilege users, auto-restart policies | Ready! 🚀 | [Ubuntu Server Docs](https://ubuntu.com/server/docs) • [Red Hat: systemd Auto-recovery](https://www.redhat.com/en/blog/systemd-automate-recovery) |
 | **02** | **Network & Firewall Engineering** | Netplan static IPs, UFW rule verification, routing | Ready! 🚀 | [Network](https://ubuntu.com/server/docs/network-configuration) • [UFW](https://ubuntu.com/server/docs/security-firewall) |
 | **03** | **Permissions & Security Hardening** | ACLs, sudoers limit, sshd passwordless auth config | Ready! 🚀 | [SSH](https://ubuntu.com/server/docs/openssh-server) • [Users](https://ubuntu.com/server/docs/user-management) |
 | **04** | **Storage & LVM Partitioning** | Partitions, logical volumes, fstab persistence | Ready! 🚀 | [LVM Storage](https://ubuntu.com/server/docs/how-to/storage/manage-logical-volumes/) |
