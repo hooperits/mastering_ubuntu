@@ -1,50 +1,53 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: [TEMPLATE] -> v1.0.0 (Initial Adoption)
+- List of modified principles:
+  - [PRINCIPLE_1] -> I. Interactive Lab-Based Learning
+  - [PRINCIPLE_2] -> II. Automated Verification
+  - [PRINCIPLE_3] -> III. Container Sandbox Isolation
+  - [PRINCIPLE_4] -> IV. Standard CLI UX
+  - [PRINCIPLE_5] -> V. Solution Walkthroughs
+- Added sections:
+  - Lab Design Constraints
+  - Grading & Verification Protocol
+- Removed sections: None
+- Templates requiring updates:
+  - .specify/templates/plan-template.md (✅ updated alignment)
+  - .specify/templates/spec-template.md (✅ updated alignment)
+  - .specify/templates/tasks-template.md (✅ updated alignment)
+- Follow-up TODOs: None
+-->
+
+# Ubuntu Server Mastery Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Interactive Lab-Based Learning
+Ubuntu server proficiency must be acquired by practical application in a live terminal. No course materials, documents, or multiple-choice questions can substitute for configuring systems directly. Every concept introduced must map to a practical lab exercise.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Automated Verification
+Every lab must be accompanied by an automated, programmatic testing script. A lab is only considered complete and master level when all verification tests successfully pass. The tests must run independently and inspect the system state to prove the configurations are correct.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Container Sandbox Isolation
+To prevent corrupting the host machine and ensure clean restarts, all learning environments must run in isolated Ubuntu LTS Docker containers. The lab manager CLI must manage the lifecycle of these containers seamlessly.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Standard CLI User Experience
+The lab manager CLI tool (`u-lab`) must provide a clean and intuitive user interface with standard exit codes, progress indicators, clear output streams (errors to stderr, normal output to stdout), and support for clean tabulations.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Solution Walkthroughs
+Each lab must have an associated markdown solution guide. This guide must provide the command-line commands and explain the underlying systems concept (e.g., how the systemd unit parser handles permissions, or why netplan overrides resolved config).
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Lab Design Constraints
+1. **Base OS**: All labs must use a standard Ubuntu LTS base image (e.g., `ubuntu:24.04`).
+2. **Resource Constraints**: Lab containers must not consume excessive CPU/RAM and should clean up their temporary docker networks.
+3. **Reproducibility**: Starting a lab must configure the container to its initial broken/unconfigured state in under 5 seconds.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Grading & Verification Protocol
+1. **State Audits over History Audits**: Verification scripts must audit the active state of the server (e.g., checking `/etc/ssh/sshd_config`, checking running processes, scanning listening sockets) instead of auditing the user's shell history (`.bash_history`).
+2. **Explanatory Error Outputs**: When an assertion fails, the verifier must return a clear explanation of *why* it failed and hints on how to resolve it.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+1. Any changes or expansions to the curriculum must update this constitution with a minor version bump.
+2. Compliance with this constitution will be audited using the `/speckit.analyze` command during development.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-06-02 | **Last Amended**: 2026-06-02
