@@ -72,3 +72,10 @@ Stop and delete the lab container instance:
 * **Lab 04: Storage & LVM Partitioning** - Partitions, logical volumes, persistence mounts via fstab.
 * **Lab 05: Package Management & Compilation** - Apt sources, custom PPAs, compiling custom libraries.
 * **Lab 06: Web Server & Reverse Proxy Design** - Nginx, self-signed SSL certificate installation, log rotating.
+* **Lab 07: System Automation & Timers** - Create backup scripts, systemd service units, and recurring daily systemd timers.
+* **Lab 08: System Diagnostics & Performance** - Diagnose memory leaks, kill runaway processes, and resolve file system inode exhaustion.
+* **Lab 09: PAM Security & User Hardening** - Configure PAM login restrictions, password complexity, and lockout policies.
+* **Lab 10: AppArmor Security Profiles** - Restrict system resource access for daemons by writing and enforcing AppArmor profiles.
+* **Lab 11: System Log Auditing & Monitoring** - Build log parsing automation scripts to extract malicious IPs and enforce firewall block rules.
+* **Lab 12: Container Engine Deployments** - Configure nested container engines, Docker-in-Docker sandboxes, and custom bridge networks.
+
