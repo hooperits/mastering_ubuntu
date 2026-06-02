@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "OnCalendar Scheduling Syntax"
+    content: "Inside `/etc/systemd/system/backup.timer`, configure scheduling under the `[Timer]` section. The line `OnCalendar=daily` tells systemd to trigger it at midnight every day. Ensure you include `Persistent=true`."
+  - tier: 2
+    title: "Oneshot Service Type"
+    content: "Because a backup script does not run continuously (it executes and exits), set `Type=oneshot` under the `[Service]` block of `/etc/systemd/system/backup.service`."
+  - tier: 3
+    title: "Systemctl Activation Sequence"
+    content: "After editing the files inside the container terminal:\n1. Reload the systemd daemon: `systemctl daemon-reload`\n2. Enable the timer: `systemctl enable backup.timer`\n3. Start the timer: `systemctl start backup.timer`\n4. Verify active status: `systemctl status backup.timer` or `systemctl list-timers`."

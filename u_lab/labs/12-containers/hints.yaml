@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Docker Network Bridges"
+    content: "Containers run isolated. To let them communicate, create a private virtual bridge using `docker network create <network-name>` before running the container."
+  - tier: 2
+    title: "Volume Mount formats"
+    content: "Inside Compose files, volumes are defined under the service key as a list: `volumes: - /host/path:/container/path`. Make sure you map the exact path: `/var/www/html:/usr/share/nginx/html`."
+  - tier: 3
+    title: "Executable Launcher Script"
+    content: "1. Write `/root/launch-container.sh` to create the network and start the container in background (`-d`) mapping port `8080:80`.\n2. Mark the script executable: `chmod +x /root/launch-container.sh`.\n3. Make sure `/root/docker-compose.yml` matches correct spacing and lists Nginx Alpine image, ports mapping, and volume mounts."

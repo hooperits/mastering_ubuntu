@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "AppArmor Rule Semicolons"
+    content: "Inside AppArmor profile blocks, every single rule statement MUST terminate with a semicolon (`;`). Missing semicolons will cause syntax parse errors."
+  - tier: 2
+    title: "Base Abstractions"
+    content: "Make sure you include the standard system abstractions imports at the top of your profile. Add `#include <abstractions/base>` and `#include <abstractions/nameservice>` to allow standard file system and network calls."
+  - tier: 3
+    title: "Syntax Validation commands"
+    content: "1. Edit `/etc/apparmor.d/usr.sbin.nginx` using your choice of terminal editor.\n2. Write target block: `/usr/sbin/nginx { ... }` and fill with rules.\n3. Validate the layout: Run `apparmor_parser -n /etc/apparmor.d/usr.sbin.nginx` inside the container terminal. If it outputs nothing, it is valid! If it returns errors, review line numbers."

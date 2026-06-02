@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Profiling with ps"
+    content: "To view memory hogs, list all running processes sorted by memory percentage: `ps aux --sort=-%mem`."
+  - tier: 2
+    title: "Diagnosing Inode Exhaustion"
+    content: "When a filesystem runs out of inodes, `df -h` might show plenty of disk space, but `df -i` will show 100% inode usage. To locate the directory containing the file clutter, count files per folder: `find /var/log -type d -exec sh -c 'echo -n \"{}: \"; find \"{}\" -maxdepth 1 -type f | wc -l' \\;`"
+  - tier: 3
+    title: "Termination and Deletion"
+    content: "1. Terminate the process: `pkill -f leaker` or find the PID using `ps aux | grep leaker` and run `kill -9 <PID>`.\n2. Reclaim inodes: Delete the target directory containing the log storm: `rm -rf /var/log/app/inodes`."

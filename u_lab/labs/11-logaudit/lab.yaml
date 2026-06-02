@@ -1,0 +1,14 @@
+id: "11-logaudit"
+title: "System Log Auditing & Monitoring"
+difficulty: "Medium"
+estimated_time: "20m"
+description: "Audit security logs to identify brute-force SSH attacks, extract attacking IPs using awk/grep, and block them dynamically using iptables."
+container:
+  image: "u-lab-base:latest"
+  hostname: "ubuntu-server"
+  privileged: true
+  volumes:
+    - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  cap_add:
+    - "SYS_ADMIN"
+    - "NET_ADMIN"

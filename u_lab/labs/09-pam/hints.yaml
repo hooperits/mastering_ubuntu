@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "PAM Stack Hierarchy"
+    content: "The PAM configuration checks files sequentially. In `/etc/pam.d/common-auth`, `pam_faillock.so` must run in `preauth` mode BEFORE `pam_unix.so`, and in `authfail` mode AFTER `pam_unix.so` (so that it can catch both success and failure results)."
+  - tier: 2
+    title: "Configuration Syntax Settings"
+    content: "1. Lockouts in `/etc/pam.d/common-auth`: `auth required pam_faillock.so preauth silent deny=3 unlock_time=600` and `auth [default=die] pam_faillock.so authfail deny=3 unlock_time=600`.\n2. Password Quality in `/etc/pam.d/common-password`: `password required pam_pwquality.so retry=3 minlen=12 dcredit=-1 ucredit=-1`."
+  - tier: 3
+    title: "Account Locking Audits"
+    content: "1. Make sure `/etc/pam.d/common-account` contains `account required pam_faillock.so` to verify the account is active and unlock it on successful login.\n2. If you accidentally lock out a mock user, run `faillock --user <username> --reset` inside the container terminal."

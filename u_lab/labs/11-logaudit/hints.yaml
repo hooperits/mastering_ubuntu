@@ -1,0 +1,10 @@
+hints:
+  - tier: 1
+    title: "Regex IP Extraction"
+    content: "Failed password logs contain mixed text. Rather than printing strict column indexes, grep and print IP patterns directly:\n`grep \"Failed password\" /var/log/auth_brute.log | grep -oE \"[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\"`"
+  - tier: 2
+    title: "Awk Count Filters"
+    content: "To filter count aggregates, combine `sort | uniq -c` with `awk`'s conditional checks: `sort | uniq -c | awk '$1 > 5 {print $2}'` (this checks if column 1 is greater than 5, and outputs column 2)."
+  - tier: 3
+    title: "Loop block Script Walkthrough"
+    content: "Write `/root/block-attackers.sh` with:\n```bash\n#!/bin/bash\n# Extract IPs\ngrep \"Failed password\" /var/log/auth_brute.log | grep -oE \"[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\" | sort | uniq -c | awk '$1 > 5 {print $2}' > /tmp/block_ips.txt\n\n# Read list and block\nwhile read -r ip; do\n    iptables -A INPUT -s \"$ip\" -j DROP\ndone < /tmp/block_ips.txt\n```\nRemember to run `chmod +x /root/block-attackers.sh` and execute it."

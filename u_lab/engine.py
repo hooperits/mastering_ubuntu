@@ -80,6 +80,8 @@ class EngineManager:
                 host_path = os.path.expanduser(parts[0])
                 bind_path = parts[1]
                 mode = parts[2] if len(parts) > 2 else "rw"
+                if bind_path == "/sys/fs/cgroup":
+                    mode = "rw"
                 volume_bindings[host_path] = {"bind": bind_path, "mode": mode}
 
         cap_add = container_config.get("cap_add", [])
@@ -100,6 +102,7 @@ class EngineManager:
             volumes=volume_bindings,
             privileged=privileged,
             cap_add=cap_add,
+            cgroupns="host",
             detach=True,
             stdin_open=True,
             tty=True,
@@ -124,7 +127,7 @@ class EngineManager:
         except docker.errors.ImageNotFound:
             console.print("[yellow]u-lab-base:latest not found. Building base image...[/yellow]")
             # Resolve Dockerfile.base relative to repo root
-            repo_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+            repo_root = os.path.dirname(os.path.dirname(__file__))
             dockerfile_path = os.path.join(repo_root, "Dockerfile.base")
             if not os.path.exists(dockerfile_path):
                 # Fallback: create default minimal base dockerfile contents dynamically
