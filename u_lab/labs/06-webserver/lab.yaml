@@ -1,0 +1,16 @@
+id: "06-webserver"
+title: "Web Server & Reverse Proxy Design"
+difficulty: "Hard"
+estimated_time: "30m"
+description: "Deploy Nginx as an HTTPS reverse proxy mapping to an upstream app server, install custom SSL certificates, and configure Logrotate scripts."
+container:
+  image: "u-lab-base:latest"
+  hostname: "ubuntu-server"
+  privileged: true
+  ports:
+    - "8080:80"
+    - "8443:443"
+  volumes:
+    - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  cap_add:
+    - "SYS_ADMIN"

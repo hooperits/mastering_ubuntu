@@ -68,7 +68,7 @@
 - [x] T014 [US2] Implement verification execution helper in `u_lab/engine.py`
 - [x] T015 [US2] Create verification reporting format engine in `u_lab/engine.py` using `rich`
 - [x] T016 [US2] Define Click CLI command `check` in `u_lab/cli.py`
-- [x] T017 [US2] Create integration test suites for checking state in `tests/test_cli.py`
+- [x] T017 [x] [US2] Create integration test suites for checking state in `tests/test_cli.py`
 
 **Checkpoint**: User Stories 1 & 2 are complete. Labyrinth can start, connect, verify, and complete a lab session.
 
@@ -116,7 +116,7 @@
 - [x] T025 [P] Implement Lab 03 (Permissions/SSH Hardening) in `u_lab/labs/03-security/`
 - [x] T026 [P] Implement Lab 04 (Storage LVM Partitioning) in `u_lab/labs/04-storage/`
 - [x] T027 [P] Implement Lab 05 (Apt/Source Compilation) in `u_lab/labs/05-compilation/`
-- [ ] T028 [P] Implement Lab 06 (Nginx SSL Reverse Proxy) in `u_lab/labs/06-webserver/`
+- [x] T028 [P] Implement Lab 06 (Nginx SSL Reverse Proxy) in `u_lab/labs/06-webserver/`
 
 ---
 
@@ -125,7 +125,7 @@
 **Purpose**: Documentation updates, safety checks, and full verification
 
 - [x] T029 Create user instruction manual in `README.md` at root
-- [ ] T030 Add boundary conditions (e.g. docker engine offline check) to `u_lab/cli.py`
+- [x] T030 Add boundary conditions (e.g. docker engine offline check) to `u_lab/cli.py`
 - [x] T031 Execute quickstart verification scripts to validate installation
 
 ---
