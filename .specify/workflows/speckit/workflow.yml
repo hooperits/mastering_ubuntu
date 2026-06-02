@@ -61,3 +61,10 @@ steps:
     integration: "{{ inputs.integration }}"
     input:
       args: "{{ inputs.feature_name }}"
+
+  - id: visuals
+    command: speckit.visuals
+    integration: "{{ inputs.integration }}"
+    input:
+      args: "{{ inputs.feature_name }}"
+

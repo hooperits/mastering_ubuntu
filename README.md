@@ -1,14 +1,79 @@
+<p align="center">
+  <img src="assets/labyrinth_logo.png" alt="Labyrinth Logo" width="120" height="120">
+</p>
+
 # 🚀 Labyrinth: Interactive Ubuntu Server Mastery Sandbox
+
+<p align="center">
+  <img src="assets/labyrinth_banner.png" alt="Labyrinth Banner" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+"></a>
+  <a href="https://docker.com"><img src="https://img.shields.io/badge/Docker-Supported-blue?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"></a>
+  <a href="https://ubuntu.com"><img src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-orange?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu 24.04 LTS"></a>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License MIT">
+</p>
 
 Labyrinth is an automated, hands-on learning CLI that spins up isolated Ubuntu Server containers locally, presents configuration scenarios, and runs real-time verifiers to check your work.
 
-## 🛠️ Prerequisites
-- **Docker**: Must be installed and running. Ensure you can run `docker ps` without sudo:
-  ```bash
-  sudo usermod -aG docker $USER
-  ```
-  *(Log out and back in to apply group changes)*
-- **Python**: Python 3.10+ is required.
+
+## 🛠️ Prerequisites & Installation
+
+Labyrinth requires **Python 3.10+** and **Docker** to build and run the sandboxed server environments. Follow the steps below for your operating system.
+
+### 🐍 1. Install Python 3.10+
+
+Ensure you have Python 3.10 or higher installed:
+
+*   **Ubuntu / Debian**:
+    ```bash
+    sudo apt update
+    sudo apt install python3 python3-venv python3-pip -y
+    ```
+*   **macOS** (via Homebrew):
+    ```bash
+    brew install python
+    ```
+*   **Windows** (via winget):
+    ```powershell
+    winget install Python.Python.3.12
+    ```
+
+---
+
+### 🐳 2. Install Docker
+
+Docker must be installed, running, and configured for non-root execution:
+
+*   **Ubuntu / Debian (Docker Engine)**:
+    ```bash
+    # Install Docker Engine
+    sudo apt update && sudo apt install docker.io -y
+
+    # Configure Non-Root Group Permissions (CRITICAL)
+    sudo usermod -aG docker $USER
+
+    # Apply group changes immediately
+    newgrp docker
+    ```
+*   **macOS & Windows (Docker Desktop)**:
+    1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+    2. Start the Docker Desktop application and ensure the engine is fully active.
+
+---
+
+### 🔍 3. Verify Prerequisites
+
+Confirm both dependencies are correctly installed and configured:
+
+```bash
+# Verify Python version (should be 3.10+)
+python3 --version
+
+# Verify Docker runs without sudo (must return active container list or header)
+docker ps
+```
 
 ---
 
@@ -32,62 +97,33 @@ Labyrinth is an automated, hands-on learning CLI that spins up isolated Ubuntu S
 
 ## 🕹️ CLI Command Reference
 
-### List Available Labs
-List the current labs catalog and your completion progress:
-```bash
-.venv/bin/u-lab list
-```
+Below is a reference guide for managing Labyrinth lab environments:
 
-### Start a Lab Session
-This builds the base Docker image (if missing), spins up the container, injects configuration bugs, and displays the lab guide:
-```bash
-.venv/bin/u-lab start 01-systemd
-```
-
-### Enter the Lab Sandbox Shell
-Attach your terminal interactively inside the Ubuntu container to start diagnosing and configuring:
-```bash
-.venv/bin/u-lab attach 01-systemd
-```
-
-### Audit Configuration and Verify Completion
-Run the verification test suite inside the active container. If all tests pass, the lab is logged as completed:
-```bash
-.venv/bin/u-lab check 01-systemd
-```
-
-### Clean Up and Destroy Sandbox
-Stop and delete the lab container instance:
-```bash
-.venv/bin/u-lab destroy 01-systemd
-```
+| Command | Action | Description |
+|:---|:---|:---|
+| `.venv/bin/u-lab list` | **List Labs** | Display the current labs catalog and completion progress. |
+| `.venv/bin/u-lab start <lab-id>` | **Start Lab** | Build the base Docker image (if missing), spin up the container, and initialize the lab. |
+| `.venv/bin/u-lab attach <lab-id>` | **Enter Shell** | Attach terminal interactively inside the Ubuntu container to start configuring. |
+| `.venv/bin/u-lab check <lab-id>` | **Verify Lab** | Run the verification test suite inside the active container. If tests pass, lab is marked complete. |
+| `.venv/bin/u-lab destroy <lab-id>` | **Clean Up** | Stop and delete the active lab container instance. |
 
 ---
 
 ## 📚 Curriculum Plan
 
-* **Lab 01: Systemd Service Mastery** - Fix crashing services, least-privilege users, auto-restart policies. *(Ready!)*  
-  *Learn More: [Ubuntu Server Documentation](https://ubuntu.com/server/docs)*
-* **Lab 02: Network & Firewall Engineering** - Netplan static IPs, UFW rule verification, routing.  
-  *Learn More: [Ubuntu Network Configuration](https://ubuntu.com/server/docs/network-configuration) & [Ubuntu Firewall (UFW)](https://ubuntu.com/server/docs/security-firewall)*
-* **Lab 03: File Permissions & Security Hardening** - ACLs, sudoers limit, sshd passwordless auth config.  
-  *Learn More: [Ubuntu OpenSSH Server](https://ubuntu.com/server/docs/openssh-server) & [Ubuntu User Management](https://ubuntu.com/server/docs/user-management)*
-* **Lab 04: Storage & LVM Partitioning** - Partitions, logical volumes, persistence mounts via fstab.  
-  *Learn More: [Ubuntu Storage with LVM](https://ubuntu.com/server/docs/how-to/storage/manage-logical-volumes/)*
-* **Lab 05: Package Management & Compilation** - Apt sources, custom PPAs, compiling custom libraries.  
-  *Learn More: [Ubuntu Package Management](https://ubuntu.com/server/docs/package-management)*
-* **Lab 06: Web Server & Reverse Proxy Design** - Nginx, self-signed SSL certificate installation, log rotating.  
-  *Learn More: [Ubuntu Nginx Web Server](https://ubuntu.com/server/docs/how-to/web-services/install-nginx/)*
-* **Lab 07: System Automation & Timers** - Create backup scripts, systemd service units, and recurring daily systemd timers.  
-  *Learn More: [Ubuntu Shell Script Backups](https://ubuntu.com/server/docs/backups-shell-scripts)*
-* **Lab 08: System Diagnostics & Performance** - Diagnose memory leaks, kill runaway processes, and resolve file system inode exhaustion.  
-  *Learn More: [Ubuntu Server Documentation](https://ubuntu.com/server/docs)*
-* **Lab 09: PAM Security & User Hardening** - Configure PAM login restrictions, password complexity, and lockout policies.  
-  *Learn More: [Ubuntu User Management](https://ubuntu.com/server/docs/user-management)*
-* **Lab 10: AppArmor Security Profiles** - Restrict system resource access for daemons by writing and enforcing AppArmor profiles.  
-  *Learn More: [Ubuntu AppArmor Security](https://ubuntu.com/server/docs/security-apparmor)*
-* **Lab 11: System Log Auditing & Monitoring** - Build log parsing automation scripts to extract malicious IPs and enforce firewall block rules.  
-  *Learn More: [Ubuntu System Security Auditing](https://ubuntu.com/server/docs/security) & [Ubuntu Firewall (UFW)](https://ubuntu.com/server/docs/security-firewall)*
-* **Lab 12: Container Engine Deployments** - Configure nested container engines, Docker-in-Docker sandboxes, and custom bridge networks.  
-  *Learn More: [Ubuntu Docker for System Admins](https://ubuntu.com/server/docs/docker-for-system-admins)*
+| Lab | Title | Focus Area / Key Concepts | Status | Documentation / Learn More |
+|:---:|:---|:---|:---:|:---|
+| **01** | **Systemd Service Mastery** | Fix crashing services, least-privilege users, auto-restart policies | Ready! 🚀 | [Ubuntu Server Docs](https://ubuntu.com/server/docs) |
+| **02** | **Network & Firewall Engineering** | Netplan static IPs, UFW rule verification, routing | Ready! 🚀 | [Network](https://ubuntu.com/server/docs/network-configuration) • [UFW](https://ubuntu.com/server/docs/security-firewall) |
+| **03** | **Permissions & Security Hardening** | ACLs, sudoers limit, sshd passwordless auth config | Ready! 🚀 | [SSH](https://ubuntu.com/server/docs/openssh-server) • [Users](https://ubuntu.com/server/docs/user-management) |
+| **04** | **Storage & LVM Partitioning** | Partitions, logical volumes, fstab persistence | Ready! 🚀 | [LVM Storage](https://ubuntu.com/server/docs/how-to/storage/manage-logical-volumes/) |
+| **05** | **Package Management & Compilation** | Apt sources, PPAs, library compilation | Ready! 🚀 | [Apt Packages](https://ubuntu.com/server/docs/package-management) |
+| **06** | **Web Server & Reverse Proxy Design** | Nginx setup, self-signed SSL, log rotation | Ready! 🚀 | [Nginx Web Server](https://ubuntu.com/server/docs/how-to/web-services/install-nginx/) |
+| **07** | **System Automation & Timers** | Backup scripts, systemd services, daily timers | Ready! 🚀 | [Shell Backups](https://ubuntu.com/server/docs/backups-shell-scripts) |
+| **08** | **System Diagnostics & Performance** | Diagnose memory leaks, kill runaway processes, inode limits | Ready! 🚀 | [Ubuntu Server Docs](https://ubuntu.com/server/docs) |
+| **09** | **PAM Security & User Hardening** | PAM login restrictions, password complexity, lockouts | Ready! 🚀 | [User Management](https://ubuntu.com/server/docs/user-management) |
+| **10** | **AppArmor Security Profiles** | AppArmor profiles, restrict system daemon directory access | Ready! 🚀 | [AppArmor MAC](https://ubuntu.com/server/docs/security-apparmor) |
+| **11** | **System Log Auditing & Monitoring** | Parse auth logs, extract malicious IPs, firewall drop rules | Ready! 🚀 | [Security](https://ubuntu.com/server/docs/security) • [UFW](https://ubuntu.com/server/docs/security-firewall) |
+| **12** | **Container Engine Deployments** | Nested container engines, Docker-in-Docker, bridge networks | Ready! 🚀 | [Docker Guide](https://ubuntu.com/server/docs/docker-for-system-admins) |
+
 
