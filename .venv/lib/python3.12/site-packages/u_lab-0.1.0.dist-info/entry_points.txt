@@ -1,0 +1,2 @@
+[console_scripts]
+u-lab = u_lab.cli:cli

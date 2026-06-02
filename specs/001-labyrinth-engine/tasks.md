@@ -17,9 +17,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directories `u_lab/`, `u_lab/labs/`, and `tests/` at repository root
-- [ ] T002 Create `requirements.txt` with click, docker, pyyaml, and rich at repository root
-- [ ] T003 [P] Create `setup.py` for editable package installation at repository root
+- [x] T001 Create project directories `u_lab/`, `u_lab/labs/`, and `tests/` at repository root
+- [x] T002 Create `requirements.txt` with click, docker, pyyaml, and rich at repository root
+- [x] T003 [P] Create `setup.py` for editable package installation at repository root
 
 ---
 
@@ -29,10 +29,10 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Create progress management module in `u_lab/state.py`
-- [ ] T005 [P] Setup basic logging config in `u_lab/__init__.py`
-- [ ] T006 Create yaml configurations loader in `u_lab/loader.py`
-- [ ] T007 [P] Implement Docker daemon detection in `u_lab/engine.py`
+- [x] T004 Create progress management module in `u_lab/state.py`
+- [x] T005 [P] Setup basic logging config in `u_lab/__init__.py`
+- [x] T006 Create yaml configurations loader in `u_lab/loader.py`
+- [x] T007 [P] Implement Docker daemon detection in `u_lab/engine.py`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -46,12 +46,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Create the systemd-enabled base container specification in `Dockerfile.base`
-- [ ] T009 [US1] Implement Docker container launcher in `u_lab/engine.py` using Docker SDK
-- [ ] T010 [US1] Implement setup script copier & executor in `u_lab/engine.py`
-- [ ] T011 [US1] Implement host-to-container terminal exec attachment in `u_lab/engine.py`
-- [ ] T012 [US1] Define Click CLI commands for `start` and `attach` in `u_lab/cli.py`
-- [ ] T013 [US1] Create container execution unit tests in `tests/test_engine.py`
+- [x] T008 [US1] Create the systemd-enabled base container specification in `Dockerfile.base`
+- [x] T009 [US1] Implement Docker container launcher in `u_lab/engine.py` using Docker SDK
+- [x] T010 [US1] Implement setup script copier & executor in `u_lab/engine.py`
+- [x] T011 [US1] Implement host-to-container terminal exec attachment in `u_lab/engine.py`
+- [x] T012 [US1] Define Click CLI commands for `start` and `attach` in `u_lab/cli.py`
+- [x] T013 [US1] Create container execution unit tests in `tests/test_engine.py`
 
 **Checkpoint**: At this point, User Story 1 is fully functional as a basic lab connector MVP.
 
@@ -65,10 +65,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T014 [US2] Implement verification execution helper in `u_lab/engine.py`
-- [ ] T015 [US2] Create verification reporting format engine in `u_lab/engine.py` using `rich`
-- [ ] T016 [US2] Define Click CLI command `check` in `u_lab/cli.py`
-- [ ] T017 [US2] Create integration test suites for checking state in `tests/test_cli.py`
+- [x] T014 [US2] Implement verification execution helper in `u_lab/engine.py`
+- [x] T015 [US2] Create verification reporting format engine in `u_lab/engine.py` using `rich`
+- [x] T016 [US2] Define Click CLI command `check` in `u_lab/cli.py`
+- [x] T017 [US2] Create integration test suites for checking state in `tests/test_cli.py`
 
 **Checkpoint**: User Stories 1 & 2 are complete. Labyrinth can start, connect, verify, and complete a lab session.
 
@@ -82,9 +82,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T018 [US3] Implement directory-based catalog scanner in `u_lab/loader.py`
-- [ ] T019 [US3] Implement ASCII progress tables renderer in `u_lab/cli.py` using `rich.table`
-- [ ] T020 [US3] Define Click CLI command `list` in `u_lab/cli.py`
+- [x] T018 [US3] Implement catalog reading function in `u_lab/loader.py`
+- [x] T019 [US3] Implement ASCII progress tables renderer in `u_lab/cli.py` using `rich.table`
+- [x] T020 [US3] Define Click CLI command `list` in `u_lab/cli.py`
 
 **Checkpoint**: User progress tracking and catalog lists are functional.
 
@@ -98,8 +98,8 @@
 
 ### Implementation for User Story 4
 
-- [ ] T021 [US4] Implement container deletion and mount cleanup in `u_lab/engine.py`
-- [ ] T022 [US4] Define Click CLI command `destroy` in `u_lab/cli.py`
+- [x] T021 [US4] Implement container deletion and mount cleanup in `u_lab/engine.py`
+- [x] T022 [US4] Define Click CLI command `destroy` in `u_lab/cli.py`
 
 **Checkpoint**: Core lab CLI tool lifecycle functions (start, attach, check, list, destroy) are finished.
 
@@ -111,7 +111,7 @@
 
 **Independent Test**: Navigate through each lab catalog module and verify all verifiers pass on correct configuration.
 
-- [ ] T023 Implement Lab 01 (Systemd Mastery) in `u_lab/labs/01-systemd/`
+- [x] T023 Implement Lab 01 (Systemd Mastery) in `u_lab/labs/01-systemd/`
 - [ ] T024 [P] Implement Lab 02 (Network Netplan/UFW) in `u_lab/labs/02-network/`
 - [ ] T025 [P] Implement Lab 03 (Permissions/SSH Hardening) in `u_lab/labs/03-security/`
 - [ ] T026 [P] Implement Lab 04 (Storage LVM Partitioning) in `u_lab/labs/04-storage/`
@@ -124,9 +124,9 @@
 
 **Purpose**: Documentation updates, safety checks, and full verification
 
-- [ ] T029 Create user instruction manual in `README.md` at root
+- [x] T029 Create user instruction manual in `README.md` at root
 - [ ] T030 Add boundary conditions (e.g. docker engine offline check) to `u_lab/cli.py`
-- [ ] T031 Execute quickstart verification scripts to validate installation
+- [x] T031 Execute quickstart verification scripts to validate installation
 
 ---
 

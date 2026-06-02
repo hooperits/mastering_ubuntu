@@ -1,0 +1,29 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install core administrative utilities
+RUN apt-get update && apt-get install -y \
+    systemd \
+    systemd-sysv \
+    sudo \
+    nginx \
+    net-tools \
+    iproute2 \
+    curl \
+    ufw \
+    iptables \
+    openssh-client \
+    openssh-server \
+    vim \
+    nano \
+    less \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Configure systemd to run correctly inside container environment
+# The container must be run with --privileged and mounting /sys/fs/cgroup
+VOLUME [ "/sys/fs/cgroup" ]
+
+# Default initiation command for systemd system manager
+CMD ["/sbin/init"]
