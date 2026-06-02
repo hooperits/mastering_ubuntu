@@ -114,7 +114,7 @@
 - [x] T023 Implement Lab 01 (Systemd Mastery) in `u_lab/labs/01-systemd/`
 - [x] T024 [P] Implement Lab 02 (Network Netplan/UFW) in `u_lab/labs/02-network/`
 - [x] T025 [P] Implement Lab 03 (Permissions/SSH Hardening) in `u_lab/labs/03-security/`
-- [ ] T026 [P] Implement Lab 04 (Storage LVM Partitioning) in `u_lab/labs/04-storage/`
+- [x] T026 [P] Implement Lab 04 (Storage LVM Partitioning) in `u_lab/labs/04-storage/`
 - [ ] T027 [P] Implement Lab 05 (Apt/Source Compilation) in `u_lab/labs/05-compilation/`
 - [ ] T028 [P] Implement Lab 06 (Nginx SSL Reverse Proxy) in `u_lab/labs/06-webserver/`
 
