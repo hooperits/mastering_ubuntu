@@ -1,0 +1,13 @@
+id: "05-compilation"
+title: "Package Management & Compilation"
+difficulty: "Hard"
+estimated_time: "25m"
+description: "Compile shared C libraries, register library linker cache options, and configure a custom local trusted APT repository source."
+container:
+  image: "u-lab-base:latest"
+  hostname: "ubuntu-server"
+  privileged: true
+  volumes:
+    - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  cap_add:
+    - "SYS_ADMIN"
